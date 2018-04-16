@@ -1,4 +1,4 @@
-package projectje;
+package ui;
 
 public class PictonaryUi {
 
