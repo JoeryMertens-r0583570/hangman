@@ -8,12 +8,12 @@ import domain.*;
 public class PictionaryUi {
 	private Speler speler;
 
-    public PictionaryUi(Speler speler) {
+    public PictionaryUi(Speler speler) throws DomainException {
         this.speler=speler;
         this.showMenu();
     }
 
-    public void showMenu() {
+    public void showMenu() throws DomainException {
         JFrame f = new JFrame();
         Integer x = null;
         Integer y = null;
@@ -34,8 +34,13 @@ public class PictionaryUi {
         Punt punt = new Punt(x, y);
 
         JOptionPane.showMessageDialog(f, "U heeft een correct punt aangemaakt: (" + x + "," + y + ")");
-        maakCirkel(f, punt);
+        String[] shapes = { "Cirkel", "Rechthoek" };
+		String keuze = (String) JOptionPane.showInputDialog(null, "Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE,
+				null, shapes, null);
+		if (keuze.equals("Cirkel"))maakCirkel(f, punt);
+		if (keuze.equals("Rechthoek"))maakRechthoek(f, punt);
     }
+    
     public void maakCirkel(JFrame f, Punt punt) {
         int radius = Integer.parseInt(JOptionPane.showInputDialog(f, "Radius van de cirkel:"));
         Cirkel cirkel = null;
@@ -47,6 +52,21 @@ public class PictionaryUi {
         }
         if (cirkel != null) {
             JOptionPane.showMessageDialog(f, "U heeft een correcte cirkel aangemaakt: " + cirkel.toString());
+        }
+    }
+    
+    public void maakRechthoek(JFrame f, Punt punt) throws DomainException {
+        int breedte = Integer.parseInt(JOptionPane.showInputDialog(f, "Breedte van de rechthoek:"));
+        int hoogte = Integer.parseInt(JOptionPane.showInputDialog(f, "Hoogte van de rechthoek:"));
+        Rechthoek rechthoek = null;
+        try {
+            rechthoek = new Rechthoek(punt, breedte, hoogte);
+        } catch (IllegalArgumentException i) {
+            JOptionPane.showMessageDialog(f, i.getMessage());
+            return;
+        }
+        if (rechthoek != null) {
+            JOptionPane.showMessageDialog(f, "U heeft een correcte rechthoek aangemaakt: " + rechthoek.toString());
         }
     }
 
