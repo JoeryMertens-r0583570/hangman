@@ -9,27 +9,27 @@ public class Punt {
 		this.y = y;
 	}
 
-	public getX() {
+	public int getX() {
 		return x;
 	}
 
-	public getY() {
+	public int getY() {
 		return y;
 	}
 
-	public setX(int x) {
+	public void setX(int x) {
 		this.x=x;
 	}
 
-	public setY(int y) {
+	public void setY(int y) {
 		this.y=y;
 	}
 
-	public toString() {
+	public String toString() {
 		return "positie: ("+x+", "+y+")";
 	}
 
-	public equals(Punt p) {
+	public boolean equals(Punt p) {
 		if(p.getX()==x&&p.getY==y)return true;
 		return false;
 	}
