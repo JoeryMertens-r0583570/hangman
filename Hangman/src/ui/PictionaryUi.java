@@ -8,13 +8,12 @@ import domain.*;
 public class PictionaryUi {
 	private Speler speler;
 
-    public PictionaryUi(Speler speler) throws DomainException {
+    public PictionaryUi(Speler speler, JFrame f) throws DomainException {
         this.speler=speler;
-        this.showMenu();
+        this.showMenu(f);
     }
 
-    public void showMenu() throws DomainException {
-        JFrame f = new JFrame();
+    public void showMenu(JFrame f) throws DomainException {
         Integer x = null;
         Integer y = null;
         while (x == null) {
