@@ -3,7 +3,7 @@ package domain;
 /**
  * @author Jaro Deklerck
  */
-public class Cirkel extends Punt {
+public class Cirkel {
     private int radius;
     private Punt middelpunt;
 
