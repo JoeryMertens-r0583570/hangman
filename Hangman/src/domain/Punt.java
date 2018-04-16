@@ -30,7 +30,7 @@ public class Punt {
 	}
 
 	public boolean equals(Punt p) {
-		if(p.getX()==x&&p.getY==y)return true;
+		if(p.getX()==x&&p.getY()==y)return true;
 		return false;
 	}
 }
