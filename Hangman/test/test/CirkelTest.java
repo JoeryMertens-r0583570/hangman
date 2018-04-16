@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 @RunWith(Suite.class)
 @SuiteClasses({ PuntTest.class, SpelerTest.class})
-public class AllTests {
+public class CirkelTest {
     @Test
     public void testCirkelAanmakenCorrect() {
         Punt punt = new Punt(200, 200);
