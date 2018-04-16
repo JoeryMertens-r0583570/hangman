@@ -1,12 +1,15 @@
 package test;
 
 import domain.*;
-import static org.junit.Assert.*;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
-/**
- * @author Jaro Deklerck
- */
+import static org.junit.Assert.*;
+
+@RunWith(Suite.class)
+@SuiteClasses({ PuntTest.class, SpelerTest.class})
 public class CirkelTest {
     @Test
     public void testCirkelAanmakenCorrect() {
