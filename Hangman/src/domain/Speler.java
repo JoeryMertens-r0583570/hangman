@@ -5,6 +5,13 @@ public class Speler {
 	private String naam;
 	private int score;
 
+	public Speler(String naam) throws DomainException{
+		if (naam == null || naam.isEmpty()) {
+			throw new DomainException();
+		}
+		else this.setNaam(naam);
+	}
+	
 	public String getNaam() {
 		return naam;
 	}
@@ -21,19 +28,21 @@ public class Speler {
 		this.score = score;
 	}
 
-	public Speler(String naam) {
-		// TODO Auto-generated constructor stub
-	}
-
-	public void addToScore(int score) {
-		
+	
+	public void addToScore(int score) throws DomainException {
+		if (this.getScore()+score < 0) throw new DomainException();
+		else this.setScore(this.getScore()+score);
 	}
 	
-	public boolean equals(Object object) {
+	public boolean equals(Speler object) {
+		if (object == null) return false;
+		if (this.score == object.getScore() && this.naam == object.getNaam()) {
+			return true;
+		}
 		return false;
 	}
 	
 	public String toString() {
-		return "";
+		return (this.getNaam() +" : " + this.getScore());
 	}
 }
