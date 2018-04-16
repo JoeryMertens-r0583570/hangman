@@ -1,16 +1,13 @@
 package ui;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+import javax.swing.*;
 
-public class Launcher extends Application {
-
-	@Override
-	public void start(Stage primaryStage) {
-		
-	}
-
+public class Launcher {
+	
 	public static void main(String[] args) {
-		launch(args);
+		
+		JFrame f = new JFrame();
+		JOptionPane.showInputDialog(f, "Welkom! \nHoe heet je?");
+		JOptionPane.showMessageDialog(f, "... heeft als score: 0");
 	}
 }

@@ -43,6 +43,6 @@ public class Speler {
 	}
 	
 	public String toString() {
-		return (this.getNaam() +" : " + this.getScore());
+		return (this.getNaam());
 	}
 }
