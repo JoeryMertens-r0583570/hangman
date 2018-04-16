@@ -1,6 +1,6 @@
 package domain;
 
-public class Rechthoek {
+public class Rechthoek extends Vorm {
 	
 	private int breedte;
 	private int hoogte;
@@ -39,9 +39,9 @@ public class Rechthoek {
 		this.linkerBovenhoek = linkerBovenhoek;
 	}
 	
-	public boolean equals(Rechthoek object) {
-		if (object == null ) return false;
-		if (this.breedte == object.getBreedte() && this.hoogte == object.getHoogte()&& this.linkerBovenhoek == object.getLinkerBovenhoek()) {
+	public boolean equals(Vorm object) {
+		if (object == null||object instanceof Rechthoek ) return false;
+		if (this.breedte == ((Rechthoek)object).getBreedte() && this.hoogte == ((Rechthoek)object).getHoogte()&& this.linkerBovenhoek == ((Rechthoek)object).getLinkerBovenhoek()) {
 			return true;
 		}
 		return false;
