@@ -18,7 +18,7 @@ public class Cirkel {
 
     public void setRadius(int radius) {
         if (radius <= 0) {
-            throw new IllegalArgumentException("Radius te klein");
+            throw new IllegalArgumentException("Radius negatief");
         }
         this.radius = radius;
     }
