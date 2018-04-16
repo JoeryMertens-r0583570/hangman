@@ -8,6 +8,6 @@ public class Launcher {
 		
 		JFrame f = new JFrame();
 		JOptionPane.showInputDialog(f, "Welkom! \nHoe heet je?");
-		JOptionPane.showMessageDialog(f, "... heeft als score: 0");
+		JOptionPane.showMessageDialog(f, "... heeft als score: 1");
 	}
 }
