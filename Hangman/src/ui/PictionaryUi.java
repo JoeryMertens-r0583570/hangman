@@ -7,9 +7,11 @@ import domain.*;
 
 public class PictionaryUi {
 	private Speler speler;
+	private Tekening tekening;
 
     public PictionaryUi(Speler speler, JFrame f) throws DomainException {
         this.speler=speler;
+        this.tekening=new Tekening(speler.getNaam());
         this.showMenu(f);
     }
 
@@ -30,32 +32,45 @@ public class PictionaryUi {
                 JOptionPane.showMessageDialog(f, "geen valide waarde");
             }
         }
+        Vorm vorm;
         Punt punt = new Punt(x, y);
+        vorm=null;
 
         JOptionPane.showMessageDialog(f, "U heeft een correct punt aangemaakt: (" + x + "," + y + ")");
         String[] shapes = { "Cirkel", "Rechthoek", "Lijnstuk" };
 		String keuze = (String) JOptionPane.showInputDialog(null, "Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE,
 				null, shapes, null);
-		if (keuze.equals("Cirkel"))maakCirkel(f, punt);
-		if (keuze.equals("Rechthoek"))maakRechthoek(f, punt);
-		if (keuze.equals("Lijnstuk"))maakLijnstuk(f, punt);
+		if (keuze.equals("Cirkel")) {
+			vorm=maakCirkel(f, punt);
+		}
+		if (keuze.equals("Rechthoek")) {
+			vorm=maakRechthoek(f, punt);
+		}
+		if (keuze.equals("Lijnstuk")) {
+			vorm=maakLijnstuk(f, punt);
+		}
+		
+		tekening.voegToe(vorm);
+		GameHoofdScherm view = new GameHoofdScherm(speler.getNaam(), tekening);
+		view.setVisible(true);
+		view.teken();
     }
     
-    public void maakCirkel(JFrame f, Punt punt) {
+    public Cirkel maakCirkel(JFrame f, Punt punt) {
         int radius = Integer.parseInt(JOptionPane.showInputDialog(f, "Radius van de cirkel:"));
         Cirkel cirkel;
         try {
             cirkel = new Cirkel(punt, radius);
         } catch (DomainException d) {
             JOptionPane.showMessageDialog(f, d.getMessage());
-            return;
+            return null;
         }
-        if (cirkel != null) {
             JOptionPane.showMessageDialog(f, "U heeft een correcte cirkel aangemaakt: " + cirkel.toString());
-        }
+            return cirkel;
+        
     }
     
-    public void maakRechthoek(JFrame f, Punt punt) throws DomainException {
+    public Rechthoek maakRechthoek(JFrame f, Punt punt) throws DomainException {
         Integer breedte = null;
         Integer hoogte = null;
         Rechthoek rechthoek = null;
@@ -76,11 +91,10 @@ public class PictionaryUi {
         
             rechthoek = new Rechthoek(punt, breedte, hoogte);
         
-        if (rechthoek != null) {
             JOptionPane.showMessageDialog(f, "U heeft een correcte rechthoek aangemaakt: " + rechthoek.toString());
-        }
+            return rechthoek;
     }
-    public void maakLijnstuk(JFrame f, Punt punt) {
+    public LijnStuk maakLijnstuk(JFrame f, Punt punt) {
         int x = Integer.parseInt(JOptionPane.showInputDialog(f, "x-coordinaat van eindpunt:"));
         int y = Integer.parseInt(JOptionPane.showInputDialog(f, "y-coordinaat van eindpunt:"));
         Punt eindpunt = null;
@@ -88,7 +102,7 @@ public class PictionaryUi {
             eindpunt = new Punt(x, y);
         } catch (IllegalArgumentException i) {
             JOptionPane.showMessageDialog(f, i.getMessage());
-            return;
+            return null;
         }
         if (eindpunt != null) {
             JOptionPane.showMessageDialog(f, "U heeft een correct eindpunt aangemaakt: " + eindpunt.toString());
@@ -98,11 +112,10 @@ public class PictionaryUi {
             lijn = new LijnStuk(punt, eindpunt);
         } catch (DomainException d) {
             JOptionPane.showMessageDialog(f, d.getMessage());
-            return;
+            return null;
         }
-        if (lijn != null) {
             JOptionPane.showMessageDialog(f, "U heeft een correcte lijn aangemaakt: " + lijn.toString());
-        }
+            return lijn;
     }
 
 }
