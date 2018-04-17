@@ -38,6 +38,7 @@ public class Driehoek extends Vorm {
 		return hoekPunt3;
 	}
 
+	@Override
 	public Omhullende getOmhullende() {
 		return new Omhullende(
 				new Punt(Math.min(hoekPunt3.getX(), Math.min(hoekPunt1.getX(), hoekPunt2.getX())),

@@ -51,7 +51,7 @@ public class Cirkel extends Vorm {
 				+ getRadius()+" -\n"+getOmhullende().toString();
 		return s;
 	}
-
+    @Override
 	public Omhullende getOmhullende() {
 		return new Omhullende(new Punt(this.getMiddelpunt().getX() - this.getRadius(),
 				this.getMiddelpunt().getY() - this.getRadius()), this.getRadius() * 2, this.getRadius() * 2);

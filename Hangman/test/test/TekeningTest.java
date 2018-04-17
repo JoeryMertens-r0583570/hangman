@@ -8,6 +8,7 @@ import domain.*;
 import org.junit.Before;
 import org.junit.Test;
 
+@Deprecated
 public class TekeningTest {
     private Vorm gebouw;
     private Vorm dak;

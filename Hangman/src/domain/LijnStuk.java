@@ -38,6 +38,7 @@ public class LijnStuk extends Vorm {
 				Math.min(getStartpunt().getY(), getEindpunt().getY()));
 	}
 
+	@Override
 	public Omhullende getOmhullende() {
 		return new Omhullende(this.getLinkerBovenHoek(),
 				Math.max(getStartpunt().getX(), getEindpunt().getX())

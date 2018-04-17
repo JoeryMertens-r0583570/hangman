@@ -34,6 +34,9 @@ public class Tekening {
         if (vorm == null) {
             throw new DomainException("Vorm is null");
         }
+        if (vorm.getOmhullende().getMinimumX() >= MIN_X && vorm.getOmhullende().getMinimumY() >= MIN_Y && vorm.getOmhullende().getMaximumX() <= MAX_X && vorm.getOmhullende().getMaximumY() <= MAX_Y) {
+            throw new DomainException("Vorm niet binnen grenzen");
+        }
         getLijst().add(vorm);
     }
 
