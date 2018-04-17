@@ -1,6 +1,7 @@
-package domain;
+package test;
 
 import static org.junit.Assert.*;
+import domain.*;
 
 import org.junit.Before;
 import org.junit.Test;
