@@ -1,14 +1,19 @@
 package ui;
 
+import java.io.IOException;
+
 import javax.swing.*;
 
-import domain.DomainException;
-import domain.Speler;
+import db.*;
+import domain.*;
 
 public class Launcher {
 
 	
-	public static void main(String[] args) throws DomainException {
+	public static void main(String[] args) throws DomainException, IOException, DbException {
+		
+		WoordenLezer woordenLezer = new WoordenLezer("C:\\Users\\wiets\\Documents\\ucll TI_2017-2018\\Semester2\\Project2\\Hangman\\src\\db\\hangman.txt");
+		WoordenLijst woordenLijst = woordenLezer.lees();
 		
 		JFrame f = new JFrame();
 		String speler = JOptionPane.showInputDialog(f, "Welkom! \nHoe heet je?");
