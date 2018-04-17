@@ -56,4 +56,10 @@ public class Cirkel extends Vorm {
 		return new Omhullende(new Punt(this.getMiddelpunt().getX() - this.getRadius(),
 				this.getMiddelpunt().getY() - this.getRadius()), this.getRadius() * 2, this.getRadius() * 2);
 	}
+
+	@Override
+	public void teken() {
+		// TODO Auto-generated method stub
+		
+	}
 }
