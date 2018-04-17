@@ -24,8 +24,8 @@ public class Tekening {
     }
 
     public void setNaam(String naam) {
-        if (naam.equals("") || naam == null) {
-            throw new DomainException("Naam is null of leeg");
+        if (naam == null || naam.equals("")) {
+            throw new IllegalArgumentException("Naam is null of leeg");
         }
         this.naam = naam;
     }

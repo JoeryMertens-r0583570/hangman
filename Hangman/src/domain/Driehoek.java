@@ -49,7 +49,7 @@ public class Driehoek extends Vorm {
 
 	@Override
 	public boolean equals(Vorm object) {
-	    if (object instanceof Driehoek) {
+	    if (!(object instanceof Driehoek)) {
 	        return false;
         }
 		if (object == null) {
