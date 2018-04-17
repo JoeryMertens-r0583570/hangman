@@ -3,7 +3,7 @@ package domain;
 /**
  * @author Jaro Deklerck
  */
-public class Cirkel {
+public class Cirkel extends Vorm {
     private int radius;
     private Punt middelpunt;
 
@@ -34,7 +34,7 @@ public class Cirkel {
         this.middelpunt = middelpunt;
     }
 
-    public boolean equals(Object obj) {
+    public boolean equals(Vorm obj) {
         if (obj instanceof Cirkel) {
             if (((Cirkel) obj).getMiddelpunt() == this.getMiddelpunt() && ((Cirkel) obj).getRadius() == this.getRadius()) {
                 return true;
