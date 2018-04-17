@@ -1,5 +1,9 @@
 package domain;
 
+import java.awt.BasicStroke;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 /**
  * @author Jaro Deklerck
  */
@@ -58,8 +62,12 @@ public class Cirkel extends Vorm {
 	}
 
 	@Override
-	public void teken() {
-		// TODO Auto-generated method stub
+	public void teken(Graphics graphics) {
+		Graphics2D graphics2D = (Graphics2D) graphics;
+		graphics2D.setStroke(new BasicStroke(5));
+		graphics.drawOval(this.getOmhullende().getMinimumX(), this
+		.getOmhullende().getMinimumY(), this.getOmhullende()
+		.getBreedte(), this.getOmhullende().getHoogte());
 		
 	}
 }

@@ -12,6 +12,7 @@ import domain.LijnStuk;
 import domain.Punt;
 import domain.Rechthoek;
 import domain.Tekening;
+import domain.Vorm;
 
 public class TekenVenster extends Canvas {
 
@@ -35,7 +36,7 @@ public class TekenVenster extends Canvas {
 
 	@Override
 	public void paint(Graphics graphics) {
-		Graphics2D graphics2D = (Graphics2D) graphics;
+		/*Graphics2D graphics2D = (Graphics2D) graphics;
 		graphics2D.setStroke(new BasicStroke(5));
 
 		Cirkel boomkruin = new Cirkel(new Punt(70, 70), 60);
@@ -60,6 +61,9 @@ public class TekenVenster extends Canvas {
 				dak.getHoekPunt3().getX() };
 		int[] yPoints = { dak.getHoekPunt1().getY(), dak.getHoekPunt2().getY(),
 				dak.getHoekPunt3().getY() };
-		graphics.drawPolygon(xPoints, yPoints, 3);
+		graphics.drawPolygon(xPoints, yPoints, 3);*/
+		for (Vorm vorm:tekening.getLijst()) {
+			vorm.teken(graphics);
+		}
 	}
 }
