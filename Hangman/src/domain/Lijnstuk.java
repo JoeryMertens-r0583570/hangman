@@ -3,10 +3,10 @@ package domain;
 /**
  * @author Jaro Deklerck
  */
-public class Lijnstuk extends Vorm{
+public class LijnStuk extends Vorm{
     private Punt startpunt;
     private Punt eindpunt;
-    public Lijnstuk(Punt startpunt, Punt eindpunt) {
+    public LijnStuk(Punt startpunt, Punt eindpunt) {
         setPunten(startpunt,eindpunt);
     }
 
@@ -15,6 +15,12 @@ public class Lijnstuk extends Vorm{
     }
 
     public void setPunten(Punt startpunt, Punt eindpunt) {
+        if (startpunt == null) {
+            throw new DomainException("Startpunt is null");
+        }
+        if (eindpunt == null) {
+            throw new DomainException("Eindpunt is null");
+        }
         if (startpunt.equals(eindpunt)) {
             throw new DomainException("Startpunt en eindpunt zijn gelijk.");
         }
@@ -27,11 +33,15 @@ public class Lijnstuk extends Vorm{
     }
 
     public boolean equals(Vorm vorm) {
-        if (vorm instanceof Lijnstuk) {
-            if (getStartpunt().equals(((Lijnstuk) vorm).getStartpunt()) && getEindpunt().equals(((Lijnstuk) vorm).getEindpunt())) {
+        if (vorm instanceof LijnStuk) {
+            if (getStartpunt().equals(((LijnStuk) vorm).getStartpunt()) && getEindpunt().equals(((LijnStuk) vorm).getEindpunt())) {
                 return true;
             }
         }
         return false;
+    }
+
+    public String toString() {
+        return "Lijn: startpunt: ("+getStartpunt().getX()+", "+getStartpunt().getY()+") - eindpunt: ("+getEindpunt().getX()+", "+getEindpunt().getY()+")";
     }
 }
