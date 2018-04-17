@@ -69,4 +69,9 @@ public class Omhullende {
 		return false;
 
 	}
+
+	public String toString() {
+		return "Omhullende: (" + this.getLinkerBovenhoek().getX() + ", " + this.getLinkerBovenhoek().getY() + " - "
+				+ this.getBreedte() + " - " + this.getHoogte();
+	}
 }
