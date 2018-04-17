@@ -68,4 +68,10 @@ public class Driehoek extends Vorm {
     public String toString(){
 	    return "hoekpunt1: ("+ this.getHoekPunt1().getX()+", "+this.getHoekPunt1().getY()+") - "+"hoekpunt2: ("+ this.getHoekPunt2().getX()+", "+this.getHoekPunt2().getY()+") - "+"hoekpunt3: ("+ this.getHoekPunt3().getX()+", "+this.getHoekPunt3().getY()+") - %n"+this.getOmhullende().toString();
     }
+
+	@Override
+	public void teken() {
+		// TODO Auto-generated method stub
+		
+	}
 }

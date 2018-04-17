@@ -63,4 +63,10 @@ public class LijnStuk extends Vorm {
 		return "Lijn: startpunt: (" + getStartpunt().getX() + ", " + getStartpunt().getY() + ") - eindpunt: ("
 				+ getEindpunt().getX() + ", " + getEindpunt().getY() + ") -\n"+getOmhullende().toString();
 	}
+
+	@Override
+	public void teken() {
+		// TODO Auto-generated method stub
+		
+	}
 }
