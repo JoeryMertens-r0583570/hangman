@@ -18,7 +18,7 @@ public class Cirkel extends Vorm {
 
     public void setRadius(int radius) {
         if (radius <= 0) {
-            throw new IllegalArgumentException("Radius negatief");
+            throw new DomainException("Radius negatief");
         }
         this.radius = radius;
     }
@@ -29,7 +29,7 @@ public class Cirkel extends Vorm {
 
     public void setMiddelpunt(Punt middelpunt) {
         if (middelpunt == null) {
-            throw new IllegalArgumentException("Middelpunt is null");
+            throw new DomainException("Middelpunt is null");
         }
         this.middelpunt = middelpunt;
     }
