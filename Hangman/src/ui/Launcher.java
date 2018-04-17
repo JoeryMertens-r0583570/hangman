@@ -14,6 +14,6 @@ public class Launcher {
 		String speler = JOptionPane.showInputDialog(f, "Welkom! \nHoe heet je?");
 		Speler player = new Speler(speler);
 		JOptionPane.showMessageDialog(f, player.toString()+" heeft als score: "+player.getScore());
-		new PictionaryUi(player);
+		new PictionaryUi(player, f);
 	}
 }
