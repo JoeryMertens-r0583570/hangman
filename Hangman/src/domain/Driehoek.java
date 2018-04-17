@@ -1,5 +1,9 @@
 package domain;
 
+import java.awt.BasicStroke;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 public class Driehoek extends Vorm {
 
 	private Punt hoekPunt1;
@@ -50,12 +54,13 @@ public class Driehoek extends Vorm {
 
 	@Override
 	public boolean equals(Vorm object) {
+		if (object == null) {
+			return false;
+		}
 	    if (!(object instanceof Driehoek)) {
 	        return false;
         }
-		if (object == null) {
-            return false;
-        }
+		
 		Punt[] listOfPointsObject = { ((Driehoek)object).getHoekPunt1(), ((Driehoek)object).getHoekPunt2(), ((Driehoek)object).getHoekPunt3() };
 		Punt[] listOfPointsThis = { this.hoekPunt1, this.hoekPunt2, this.hoekPunt3 };
 
@@ -70,8 +75,15 @@ public class Driehoek extends Vorm {
     }
 
 	@Override
-	public void teken() {
-		// TODO Auto-generated method stub
+	public void teken(Graphics graphics) {
+
+		Graphics2D graphics2D = (Graphics2D) graphics;
+		graphics2D.setStroke(new BasicStroke(5));
+		int[] xPoints = { this.getHoekPunt1().getX(), this.getHoekPunt2().getX(),
+				this.getHoekPunt3().getX() };
+		int[] yPoints = { this.getHoekPunt1().getY(), this.getHoekPunt2().getY(),
+				this.getHoekPunt3().getY() };
+		graphics.drawPolygon(xPoints, yPoints, 3);
 		
 	}
 }

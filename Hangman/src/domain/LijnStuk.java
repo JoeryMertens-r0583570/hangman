@@ -1,5 +1,9 @@
 package domain;
 
+import java.awt.BasicStroke;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 /**
  * @author Jaro Deklerck
  */
@@ -65,8 +69,13 @@ public class LijnStuk extends Vorm {
 	}
 
 	@Override
-	public void teken() {
-		// TODO Auto-generated method stub
+	public void teken(Graphics graphics) {
+
+		Graphics2D graphics2D = (Graphics2D) graphics;
+		graphics2D.setStroke(new BasicStroke(5));
+		graphics.drawLine(this.getStartpunt().getX(), this
+				.getStartpunt().getY(), this.getEindpunt().getX(), this
+				.getEindpunt().getY());
 		
 	}
 }
