@@ -1,6 +1,7 @@
 package domain;
 
 public abstract class Vorm {
-public abstract boolean equals(Vorm vorm);
-public abstract String toString();
+    public abstract Omhullende getOmhullende();
+    public abstract boolean equals(Vorm vorm);
+    public abstract String toString();
 }
