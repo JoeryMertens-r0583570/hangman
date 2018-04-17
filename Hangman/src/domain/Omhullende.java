@@ -3,27 +3,20 @@ package domain;
 public class Omhullende {
 	private int hoogte;
 	private int breedte;
-	private Punt linksboven;
+	private Punt linkerbovenhoek;
 
-	public Omhullende(Vorm vorm) {
-		if(vorm instanceof Rechthoek) {
-			linksboven = ((Rechthoek) vorm).getLinkerBovenhoek();
-			breedte=((Rechthoek) vorm).getBreedte();
-			hoogte=((Rechthoek) vorm).getHoogte();
-		}
-		if(vorm instanceof Cirkel) {
-			linksboven=new Punt(((Cirkel) vorm).getMiddelpunt().getX()-((Cirkel) vorm).getRadius(),((Cirkel) vorm).getMiddelpunt().getY()-((Cirkel) vorm).getRadius());
-			hoogte=((Cirkel) vorm).getRadius()*2;
-			breedte=((Cirkel) vorm).getRadius()*2;
-		}
+	public Omhullende(Punt linksboven, int breedte, int hoogte) {
+		setLinkerBovenhoek(linksboven);
+		setBreedte(breedte);
+		setHoogte(hoogte);
 	}
 
-	public Punt getLinksboven() {
-		return linksboven;
+	public Punt getLinkerBovenhoek() {
+		return linkerbovenhoek;
 	}
 
-	public void setLinksboven(Punt linksboven) {
-		this.linksboven = linksboven;
+	public void setLinkerBovenhoek(Punt linksboven) {
+		this.linkerbovenhoek = linksboven;
 	}
 
 	public int getBreedte() {
@@ -41,16 +34,20 @@ public class Omhullende {
 	public void setHoogte(int hoogte) {
 		this.hoogte = hoogte;
 	}
+
 	public int getMinimumX() {
-		return linksboven.getX();
+		return linkerbovenhoek.getX();
 	}
+
 	public int getMinimumY() {
-		return linksboven.getY()-hoogte;
+		return linkerbovenhoek.getY() - hoogte;
 	}
+
 	public int getMaximumX() {
-		return linksboven.getX()+breedte;
+		return linkerbovenhoek.getX() + breedte;
 	}
+
 	public int getMaximumY() {
-		return linksboven.getY();
+		return linkerbovenhoek.getY();
 	}
 }

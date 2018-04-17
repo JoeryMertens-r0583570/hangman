@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import domain.Omhullende;
+import domain.Punt;
+
 public class OmhullendeTest {
 
 	private Punt linkerBovenhoek;
