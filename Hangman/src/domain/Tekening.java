@@ -1,6 +1,8 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * @author Jaro Deklerck
@@ -69,5 +71,23 @@ public class Tekening {
             }
         }
         return false;
+    }
+
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Tekening) || (this == null && obj != null) || (this != null && obj == null) || ((Tekening) obj).getAantalVormen() != getAantalVormen()) {
+            return false;
+        }
+        if (this == null && obj == null) {
+            return true;
+        }
+        return getLijst().containsAll(((Tekening) obj).getLijst()) && ((Tekening) obj).getLijst().containsAll(getLijst());
+    }
+
+    public String toString() {
+        String s = "Tekening met naam "+getNaam()+"bestaat uit "+getAantalVormen()+" vormen:\n";
+        for (Vorm v: getLijst()) {
+            s += v.toString()+"\n";
+        }
+        return s;
     }
 }
