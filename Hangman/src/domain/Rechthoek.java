@@ -57,4 +57,10 @@ public class Rechthoek extends Vorm {
 		return new Omhullende(this.getLinkerBovenhoek(),this.getBreedte(),this.getHoogte());
 	}
 
+	@Override
+	public void teken() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
