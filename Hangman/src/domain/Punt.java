@@ -26,7 +26,7 @@ public class Punt {
 	}
 
 	public String toString() {
-		return "positie: ("+x+", "+y+")";
+		return "("+x+", "+y+")";
 	}
 
 	public boolean equals(Punt p) {
