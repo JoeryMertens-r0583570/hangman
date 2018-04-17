@@ -14,6 +14,15 @@ public class Launcher {
 		String speler = JOptionPane.showInputDialog(f, "Welkom! \nHoe heet je?");
 		Speler player = new Speler(speler);
 		JOptionPane.showMessageDialog(f, player.toString()+" heeft als score: "+player.getScore());
-		new PictionaryUi(player, f);
+		String[] games = {"Pictonary", "HangMan"};
+		String keuze = (String) JOptionPane.showInputDialog(null, "Wat wilt u spelen", "input", JOptionPane.INFORMATION_MESSAGE,
+				null, games, null);
+		if (keuze.equals("Pictonary")){
+			new PictionaryUi(player, f);
+			
+		}
+		else if (keuze.equals("HangMan")) {
+			new HangManUI(player, f);
+		}
 	}
 }
