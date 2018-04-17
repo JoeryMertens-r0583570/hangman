@@ -47,10 +47,15 @@ public class Driehoek extends Vorm {
 						Math.max(hoekPunt3.getY(), Math.max(hoekPunt1.getY(), hoekPunt2.getY()))-Math.min(hoekPunt3.getY(), Math.min(hoekPunt1.getY(), hoekPunt2.getY())));
 	}
 
-	public boolean equals(Driehoek object) {
-		if (object == null)
-			return false;
-		Punt[] listOfPointsObject = { object.hoekPunt1, object.hoekPunt2, object.hoekPunt3 };
+	@Override
+	public boolean equals(Vorm object) {
+	    if (object instanceof Driehoek) {
+	        return false;
+        }
+		if (object == null) {
+            return false;
+        }
+		Punt[] listOfPointsObject = { ((Driehoek)object).getHoekPunt1(), ((Driehoek)object).getHoekPunt2(), ((Driehoek)object).getHoekPunt3() };
 		Punt[] listOfPointsThis = { this.hoekPunt1, this.hoekPunt2, this.hoekPunt3 };
 
 		if (listOfPointsObject.equals(listOfPointsThis)) {
@@ -58,5 +63,8 @@ public class Driehoek extends Vorm {
 		}
 		return false;
 	}
-
+    @Override
+    public String toString(){
+	    return "";
+    }
 }

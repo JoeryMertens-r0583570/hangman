@@ -46,6 +46,7 @@ public class LijnStuk extends Vorm {
 						getEindpunt().getY() - Math.min(getStartpunt().getY(), getEindpunt().getY())));
 	}
 
+	@Override
 	public boolean equals(Vorm vorm) {
 		if (vorm instanceof LijnStuk) {
 			if (getStartpunt().equals(((LijnStuk) vorm).getStartpunt())
@@ -56,8 +57,9 @@ public class LijnStuk extends Vorm {
 		return false;
 	}
 
+	@Override
 	public String toString() {
 		return "Lijn: startpunt: (" + getStartpunt().getX() + ", " + getStartpunt().getY() + ") - eindpunt: ("
-				+ getEindpunt().getX() + ", " + getEindpunt().getY() + ")";
+				+ getEindpunt().getX() + ", " + getEindpunt().getY() + ") -\n"+getOmhullende().toString();
 	}
 }

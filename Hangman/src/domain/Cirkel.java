@@ -34,6 +34,7 @@ public class Cirkel extends Vorm {
 		this.middelpunt = middelpunt;
 	}
 
+	@Override
 	public boolean equals(Vorm obj) {
 		if (obj instanceof Cirkel) {
 			if (((Cirkel) obj).getMiddelpunt() == this.getMiddelpunt()
@@ -44,9 +45,10 @@ public class Cirkel extends Vorm {
 		return false;
 	}
 
+	@Override
 	public String toString() {
 		String s = "Cirkel: middelPunt: (" + getMiddelpunt().getX() + ", " + getMiddelpunt().getY() + ") - straal: "
-				+ getRadius();
+				+ getRadius()+" -\n"+getOmhullende().toString();
 		return s;
 	}
 

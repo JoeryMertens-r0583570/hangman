@@ -38,7 +38,8 @@ public class Rechthoek extends Vorm {
 		if (linkerBovenhoek == null) throw new DomainException();
 		this.linkerBovenhoek = linkerBovenhoek;
 	}
-	
+
+	@Override
 	public boolean equals(Vorm object) {
 		if (object == null||object instanceof Rechthoek ) return false;
 		if (this.breedte == ((Rechthoek)object).getBreedte() && this.hoogte == ((Rechthoek)object).getHoogte()&& this.linkerBovenhoek == ((Rechthoek)object).getLinkerBovenhoek()) {
@@ -46,9 +47,10 @@ public class Rechthoek extends Vorm {
 		}
 		return false;
 	}
-	
+
+	@Override
 	public String toString() {
-		return ("Rechthoek: "+linkerBovenhoek.toString()+" - breedte: "+breedte+" - hoogte: "+hoogte);
+		return "Rechthoek: "+linkerBovenhoek.toString()+" - breedte: "+breedte+" - hoogte: "+hoogte+" -\n"+getOmhullende().toString();
 	}
 	public Omhullende getOmhullende() {
 		return new Omhullende(this.getLinkerBovenhoek(),this.getBreedte(),this.getHoogte());
