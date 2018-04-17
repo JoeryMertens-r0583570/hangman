@@ -33,20 +33,21 @@ public class PictionaryUi {
         Punt punt = new Punt(x, y);
 
         JOptionPane.showMessageDialog(f, "U heeft een correct punt aangemaakt: (" + x + "," + y + ")");
-        String[] shapes = { "Cirkel", "Rechthoek" };
+        String[] shapes = { "Cirkel", "Rechthoek", "Lijnstuk" };
 		String keuze = (String) JOptionPane.showInputDialog(null, "Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE,
 				null, shapes, null);
 		if (keuze.equals("Cirkel"))maakCirkel(f, punt);
 		if (keuze.equals("Rechthoek"))maakRechthoek(f, punt);
+		if (keuze.equals("Lijnstuk"))maakLijnstuk(f, punt);
     }
     
     public void maakCirkel(JFrame f, Punt punt) {
         int radius = Integer.parseInt(JOptionPane.showInputDialog(f, "Radius van de cirkel:"));
-        Cirkel cirkel = null;
+        Cirkel cirkel;
         try {
             cirkel = new Cirkel(punt, radius);
-        } catch (IllegalArgumentException i) {
-            JOptionPane.showMessageDialog(f, i.getMessage());
+        } catch (DomainException d) {
+            JOptionPane.showMessageDialog(f, d.getMessage());
             return;
         }
         if (cirkel != null) {
@@ -77,6 +78,30 @@ public class PictionaryUi {
         
         if (rechthoek != null) {
             JOptionPane.showMessageDialog(f, "U heeft een correcte rechthoek aangemaakt: " + rechthoek.toString());
+        }
+    }
+    public void maakLijnstuk(JFrame f, Punt punt) {
+        int x = Integer.parseInt(JOptionPane.showInputDialog(f, "x-coordinaat van eindpunt:"));
+        int y = Integer.parseInt(JOptionPane.showInputDialog(f, "y-coordinaat van eindpunt:"));
+        Punt eindpunt = null;
+        try {
+            eindpunt = new Punt(x, y);
+        } catch (IllegalArgumentException i) {
+            JOptionPane.showMessageDialog(f, i.getMessage());
+            return;
+        }
+        if (eindpunt != null) {
+            JOptionPane.showMessageDialog(f, "U heeft een correct eindpunt aangemaakt: " + eindpunt.toString());
+        }
+        LijnStuk lijn;
+        try {
+            lijn = new LijnStuk(punt, eindpunt);
+        } catch (DomainException d) {
+            JOptionPane.showMessageDialog(f, d.getMessage());
+            return;
+        }
+        if (lijn != null) {
+            JOptionPane.showMessageDialog(f, "U heeft een correcte lijn aangemaakt: " + lijn.toString());
         }
     }
 
