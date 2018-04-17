@@ -6,18 +6,19 @@ public class Speler {
 	private int score;
 
 	public Speler(String naam) throws DomainException{
-		if (naam == null || naam.isEmpty()) {
-			throw new DomainException();
-		}
-		else this.setNaam(naam);
+		this.setNaam(naam);
 	}
 	
 	public String getNaam() {
 		return naam;
 	}
 
-	public void setNaam(String naam) {
-		this.naam = naam;
+	public void setNaam(String naam) throws DomainException {
+		if (naam == null || naam.isEmpty()) {
+			throw new DomainException();
+		}
+		else this.naam = naam;
+		
 	}
 
 	public int getScore() {
@@ -36,7 +37,7 @@ public class Speler {
 	
 	public boolean equals(Speler object) {
 		if (object == null) return false;
-		if (this.score == object.getScore() && this.naam == object.getNaam()) {
+		if (this.score == object.getScore() && this.naam.equals(object.getNaam())) {
 			return true;
 		}
 		return false;

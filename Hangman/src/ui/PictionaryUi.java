@@ -55,15 +55,26 @@ public class PictionaryUi {
     }
     
     public void maakRechthoek(JFrame f, Punt punt) throws DomainException {
-        int breedte = Integer.parseInt(JOptionPane.showInputDialog(f, "Breedte van de rechthoek:"));
-        int hoogte = Integer.parseInt(JOptionPane.showInputDialog(f, "Hoogte van de rechthoek:"));
+        Integer breedte = null;
+        Integer hoogte = null;
         Rechthoek rechthoek = null;
-        try {
-            rechthoek = new Rechthoek(punt, breedte, hoogte);
-        } catch (IllegalArgumentException i) {
-            JOptionPane.showMessageDialog(f, i.getMessage());
-            return;
+        while (breedte == null) {
+            try {
+                breedte = Integer.parseInt(JOptionPane.showInputDialog(f, "Breedte van de rechthoek:"));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(f, "geen valide waarde");
+            }
         }
+        while (hoogte == null) {
+            try {
+                hoogte = Integer.parseInt(JOptionPane.showInputDialog(f, "Hoogte van de rechthoek:"));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(f, "geen valide waarde");
+            }
+        }
+        
+            rechthoek = new Rechthoek(punt, breedte, hoogte);
+        
         if (rechthoek != null) {
             JOptionPane.showMessageDialog(f, "U heeft een correcte rechthoek aangemaakt: " + rechthoek.toString());
         }

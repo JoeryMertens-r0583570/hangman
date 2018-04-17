@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import domain.DomainException;
 import domain.Speler;
+
 public class SpelerTest {
 	
 	private String naam;
@@ -16,7 +17,7 @@ public class SpelerTest {
 	private Speler speler;
 
 	@Before
-	public void setUp() throws DomainException {
+	public void setUp() throws Exception {
 		naam = "Lars";
 		anderenaam = "Lies";
 		positiveScore = 5;
@@ -44,7 +45,7 @@ public class SpelerTest {
 	@Test
 	public void equals_moet_true_teruggeven_als_naam_en_score_gelijk_zijn() throws DomainException{
 		speler.addToScore(positiveScore);
-		Speler andereSpeler = new Speler(naam);
+		Speler andereSpeler = new Speler(new String("Lars"));
 		andereSpeler.addToScore(positiveScore);
 		
 		assertTrue(speler.equals(andereSpeler));
