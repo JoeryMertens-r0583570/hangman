@@ -19,7 +19,11 @@ public class HangManUI {
 	 public void showMenu(JFrame f) throws DomainException {
 		 String guess = JOptionPane.showInputDialog(null, ("Rarara welk woord zoeken we?\n"+hintWoord.toString())+"\nGeef een letter:");
 		 while (! hintWoord.isGeraden()) {
-			 if (hintWoord.raad(guess.charAt(0))) {
+			 if (guess.length() != 1 ) { 
+				 JOptionPane.showMessageDialog(null, "Geef een enkelvoudig character in");
+				 guess = JOptionPane.showInputDialog(null, ("Rarara welk woord zoeken we?\n"+hintWoord.toString())+"\nGeef een letter:");
+			 }
+			 else if (hintWoord.raad(guess.charAt(0))) {
 				 if ( hintWoord.isGeraden()) break;
 				  guess = JOptionPane.showInputDialog(null, ("Super doe zo voort!\nRarara welk woord zoeken we?\n"+hintWoord.toString())+"\nGeef een letter:");
 			 }
