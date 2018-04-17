@@ -7,11 +7,12 @@ import domain.*;
 
 public class HangManUI {
 	
-	private HintWoord hintWoord = new HintWoord("woord");
+	private HintWoord hintWoord;
 	private Speler speler;
 	
-	public HangManUI(Speler speler, JFrame f) throws DomainException {
+	public HangManUI(Speler speler, JFrame f, HintWoord hintWoord) throws DomainException {
         this.speler=speler;
+        this.hintWoord=hintWoord;
         this.showMenu(f);
     }
 
@@ -32,7 +33,7 @@ public class HangManUI {
 			 }
 		 }
 		 if (hintWoord.isGeraden()) {
-			 JOptionPane.showMessageDialog(null, "Super je hebt het woord geraden!\n"+hintWoord.getWoord());
+			 JOptionPane.showMessageDialog(null, "Super je hebt het woord geraden!\nHet woord was: "+hintWoord.getWoord());
 		 }
 	 }
 }
