@@ -6,13 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import domain.Cirkel;
-import domain.Driehoek;
-import domain.LijnStuk;
-import domain.Punt;
-import domain.Rechthoek;
-import domain.Tekening;
-import domain.Vorm;
+import domain.*;
 
 public class TekenVenster extends Canvas {
 

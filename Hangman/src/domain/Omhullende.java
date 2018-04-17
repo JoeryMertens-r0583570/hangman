@@ -49,7 +49,7 @@ public class Omhullende {
 	}
 
 	public int getMinimumY() {
-		return linkerbovenhoek.getY() - hoogte;
+		return linkerbovenhoek.getY();
 	}
 
 	public int getMaximumX() {
@@ -57,7 +57,7 @@ public class Omhullende {
 	}
 
 	public int getMaximumY() {
-		return linkerbovenhoek.getY();
+		return linkerbovenhoek.getY() + hoogte;
 	}
 
 	public boolean equals(Omhullende test) {
