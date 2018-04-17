@@ -58,13 +58,14 @@ public class TekeningHangman extends Tekening {
         return count;
     }
 
-    public void ZetVolgendeZichtbaar() {
+    public void zetVolgendeZichtbaar() {
         for (Vorm v: getLijst()){
             if (!v.isZichtbaar()) {
                 v.setZichtbaar(true);
                 return;
             }
         }
+        throw new DomainException("Alles is reeds zichtbaar");
     }
 
     public void reset() {

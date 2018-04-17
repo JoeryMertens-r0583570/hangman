@@ -2,9 +2,6 @@ package test;
 
 import domain.*;
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
 
 import static org.junit.Assert.*;
 
@@ -578,4 +575,57 @@ public class AllTests {
 		
 		assertTrue(hint.isGeraden());
 	}
+
+	//TekeningHangmanTests
+    @Test
+    public void maak_Tekening_Van_Hangman() {
+	    TekeningHangman hangman = new TekeningHangman();
+	    assertEquals(hangman.getNaam(), "Hangman");
+	    assertEquals(hangman.getAantalOnzichtbaar(), 14);
+	    assertTrue(hangman.getVorm(3).isZichtbaar());
+    }
+
+    @Test
+    public void zet_Volgende_Zichtbaar() {
+        TekeningHangman hangman = new TekeningHangman();
+        hangman.zetVolgendeZichtbaar();
+        assertEquals(hangman.getAantalOnzichtbaar(), 13);
+        assertTrue(hangman.getVorm(4).isZichtbaar());
+        hangman.zetVolgendeZichtbaar();
+        assertEquals(hangman.getAantalOnzichtbaar(), 12);
+        assertTrue(hangman.getVorm(5).isZichtbaar());
+    }
+    @Test(expected = DomainException.class)
+    public void zet_Volgende_Zichtbaar_18_Zichtbaar() {
+        TekeningHangman hangman = new TekeningHangman();
+        for (int i = 4; i < 18; i++) {
+            hangman.zetVolgendeZichtbaar();
+        }
+        assertEquals(hangman.getAantalOnzichtbaar(), 0);
+        assertTrue(hangman.getVorm(17).isZichtbaar());
+        hangman.zetVolgendeZichtbaar();
+    }
+    @Test
+    public void reset_Hangman() {
+        TekeningHangman hangman = new TekeningHangman();
+        hangman.zetVolgendeZichtbaar();
+        assertEquals(hangman.getAantalOnzichtbaar(), 13);
+        assertTrue(hangman.getVorm(4).isZichtbaar());
+        hangman.zetVolgendeZichtbaar();
+        assertEquals(hangman.getAantalOnzichtbaar(), 12);
+        assertTrue(hangman.getVorm(5).isZichtbaar());
+        hangman.reset();
+        assertEquals(hangman.getAantalOnzichtbaar(), 14);
+        assertTrue(hangman.getVorm(3).isZichtbaar());
+    }
+    @Test(expected = DomainException.class)
+    public void voeg_Toe_Aan_Hangman() {
+        TekeningHangman hangman = new TekeningHangman();
+        hangman.voegToe(new Cirkel(punt, 20));
+    }
+    @Test(expected = DomainException.class)
+    public void verwijder_Van_Hangman() {
+        TekeningHangman hangman = new TekeningHangman();
+        hangman.verwijder(hangman.getVorm(5));
+    }
 }
