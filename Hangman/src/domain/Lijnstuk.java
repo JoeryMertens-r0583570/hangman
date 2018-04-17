@@ -32,6 +32,10 @@ public class LijnStuk extends Vorm{
         return eindpunt;
     }
 
+    public Punt getLinkerBovenHoek() {
+        return new Punt(Math.min(getStartpunt().getX(), getEindpunt().getX()), Math.min(getStartpunt().getY(), getEindpunt().getY()));
+    }
+
     public boolean equals(Vorm vorm) {
         if (vorm instanceof LijnStuk) {
             if (getStartpunt().equals(((LijnStuk) vorm).getStartpunt()) && getEindpunt().equals(((LijnStuk) vorm).getEindpunt())) {
