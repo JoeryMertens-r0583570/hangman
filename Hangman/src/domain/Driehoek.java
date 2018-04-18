@@ -63,8 +63,15 @@ public class Driehoek extends Vorm {
 		
 		Punt[] listOfPointsObject = { ((Driehoek)object).getHoekPunt1(), ((Driehoek)object).getHoekPunt2(), ((Driehoek)object).getHoekPunt3() };
 		Punt[] listOfPointsThis = { this.hoekPunt1, this.hoekPunt2, this.hoekPunt3 };
-
-		if (listOfPointsObject.equals(listOfPointsThis)) {
+		int counter=0;
+		for(Punt punt:listOfPointsObject) {
+			for(Punt compare:listOfPointsThis) {
+				if(punt.equals(compare)) {
+					counter++;
+				}
+			}
+		}
+		if (counter==3) {
 			return true;
 		}
 		return false;

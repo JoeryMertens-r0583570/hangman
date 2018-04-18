@@ -16,7 +16,9 @@ public class DriehoekTest {
 	private Punt punt3 = new Punt(190, 30);
 	private Punt zelfdeAlsPunt3 = new Punt(190, 30);
 	private Punt verschillendVanPunt3 = new Punt(120, 100);
-
+	private Punt inversionTest1 = new Punt(100,100);
+	private Punt inversionTest2 = new Punt(100,200);
+	private Punt inversionTest3 = new Punt(200,100);
 	@Test
 	public void Driehoek_moet_DrieHoek_aanmaken_met_gegeven_hoekpunten() {
 		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
@@ -26,6 +28,10 @@ public class DriehoekTest {
 		assertEquals(punt3, drieHoek.getHoekPunt3());
 	}
 	
+	@Test
+	public void Driehoek_moet_werken_bij_inverted_punten() {
+		new Driehoek(inversionTest1,inversionTest2,inversionTest3);
+	}
 	@Test (expected = DomainException.class)
 	public void Driehoek_Moet_exception_gooien_als_hoekpunt1_null()  {
 		new Driehoek(null, punt2, punt3);
