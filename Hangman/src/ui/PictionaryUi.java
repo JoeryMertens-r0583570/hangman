@@ -18,6 +18,11 @@ public class PictionaryUi {
     public void showMenu(JFrame f) throws DomainException {
         Integer x = null;
         Integer y = null;
+        Vorm vorm = null;
+        String[] shapes = { "Cirkel", "Rechthoek", "Lijnstuk" };
+		String keuze = (String) JOptionPane.showInputDialog(null, "Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE,
+				null, shapes, null);
+		
         while (x == null) {
             try {
                 x = Integer.parseInt(JOptionPane.showInputDialog(f, "x coordinaat:"));
@@ -32,15 +37,10 @@ public class PictionaryUi {
                 JOptionPane.showMessageDialog(f, "geen valide waarde");
             }
         }
-        Vorm vorm;
+        
         Punt punt = new Punt(x, y);
-        vorm=null;
-
         JOptionPane.showMessageDialog(f, "U heeft een correct punt aangemaakt: (" + x + "," + y + ")");
-        String[] shapes = { "Cirkel", "Rechthoek", "Lijnstuk" };
-		String keuze = (String) JOptionPane.showInputDialog(null, "Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE,
-				null, shapes, null);
-		if (keuze.equals("Cirkel")) {
+        if (keuze.equals("Cirkel")) {
 			vorm=maakCirkel(f, punt);
 		}
 		if (keuze.equals("Rechthoek")) {
@@ -49,8 +49,10 @@ public class PictionaryUi {
 		if (keuze.equals("Lijnstuk")) {
 			vorm=maakLijnstuk(f, punt);
 		}
+
 		
 		tekening.voegToe(vorm);
+		
 		GameHoofdScherm view = new GameHoofdScherm(speler.getNaam(), tekening);
 		view.setVisible(true);
 		view.teken();
