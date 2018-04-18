@@ -28,7 +28,7 @@ public class HintWoord {
 	}
 	
 	public boolean isGeraden() {
-		if (this.toString().replace(" ", "").equals(this.getWoord())) return true;
+		if (this.toString().replace("   ", " # ").replace(" ", "").replace("#", " ").equals(this.getWoord())) return true;
 		return false;
 	}
 	
@@ -43,8 +43,8 @@ public class HintWoord {
 	public String getWoord() {
 		String woord = "";
 		for(HintLetter hintLetter: letterList) {
-			woord += (" "+ hintLetter.getLetter());
+			woord += (""+ hintLetter.getLetter());
 		}
-		return woord.trim().replace(" ", "");
+		return woord.trim();
 	}
 }
