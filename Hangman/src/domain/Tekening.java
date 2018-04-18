@@ -10,13 +10,25 @@ import java.util.Collections;
 public class Tekening {
     private final static int MIN_X = 0;
     private final static int MIN_Y = 0;
-    private final static int MAX_X = 399;
-    private final static int MAX_Y = 399;
+    private final static int MAX_X = 400;
+    private final static int MAX_Y = 400;
     private String naam;
     private ArrayList<Vorm> lijst = new ArrayList<>();
 
     public Tekening(String naam) {
         setNaam(naam);
+    }
+    public int getMinX() {
+    	return MIN_X;
+    }
+    public int getMaxX() {
+    	return MAX_X;
+    }
+    public int getMinY() {
+    	return MIN_Y;
+    }
+    public int getMaxY() {
+    	return MAX_Y;
     }
 
     public String getNaam() {
@@ -34,7 +46,7 @@ public class Tekening {
         if (vorm == null) {
             throw new DomainException("Vorm is null");
         }
-        if (!(vorm.getOmhullende().getMinimumX() > MIN_X && vorm.getOmhullende().getMinimumY() > MIN_Y && vorm.getOmhullende().getMaximumX() < MAX_X && vorm.getOmhullende().getMaximumY() < MAX_Y)) {
+        if (!(vorm.getOmhullende().getMinimumX() >= MIN_X && vorm.getOmhullende().getMinimumY() >= MIN_Y && vorm.getOmhullende().getMaximumX() <= MAX_X && vorm.getOmhullende().getMaximumY() <= MAX_Y)) {
             throw new DomainException("Vorm niet binnen grenzen");
         }
         getLijst().add(vorm);
