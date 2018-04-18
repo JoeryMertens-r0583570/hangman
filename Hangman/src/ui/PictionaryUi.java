@@ -19,6 +19,8 @@ public class PictionaryUi {
 		Integer x = null;
 		Integer y = null;
 		Vorm vorm = null;
+
+		JOptionPane.showMessageDialog(f, "Het scherm gaat tussen ("+tekening.getMinX()+","+tekening.getMinY()+") en ("+tekening.getMaxX()+","+tekening.getMaxY()+")");
 		String[] shapes = { "Niets", "Driehoek", "Cirkel", "Rechthoek", "Lijnstuk" };
 		String keuze = (String) JOptionPane.showInputDialog(null, "Wat wilt u tekenen", "input",
 				JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
@@ -53,7 +55,14 @@ public class PictionaryUi {
 				vorm = maakLijnstuk(f, punt);
 			}
 
-			tekening.voegToe(vorm);
+			try{
+				tekening.voegToe(vorm);
+
+				JOptionPane.showMessageDialog(f, "u heeft een correcte "+keuze+" aangemaakt");
+			}
+			catch(DomainException e){
+				JOptionPane.showMessageDialog(f, "vorm niet binnen grenzen");
+			}
 			showMenu(f);
 		}
 		GameHoofdScherm view = new GameHoofdScherm(speler.getNaam(), tekening);
@@ -75,7 +84,6 @@ public class PictionaryUi {
 			JOptionPane.showMessageDialog(f, d.getMessage());
 			return null;
 		}
-		JOptionPane.showMessageDialog(f, "U heeft een correcte driehoek aangemaakt: " + driehoek.toString());
 		return driehoek;
 	}
 
@@ -88,7 +96,6 @@ public class PictionaryUi {
 			JOptionPane.showMessageDialog(f, d.getMessage());
 			return null;
 		}
-		JOptionPane.showMessageDialog(f, "U heeft een correcte cirkel aangemaakt: " + cirkel.toString());
 		return cirkel;
 
 	}
@@ -114,7 +121,6 @@ public class PictionaryUi {
 
 		rechthoek = new Rechthoek(punt, breedte, hoogte);
 
-		JOptionPane.showMessageDialog(f, "U heeft een correcte rechthoek aangemaakt: " + rechthoek.toString());
 		return rechthoek;
 	}
 
@@ -129,8 +135,7 @@ public class PictionaryUi {
 			return null;
 		}
 		if (eindpunt != null) {
-			JOptionPane.showMessageDialog(f, "U heeft een correct eindpunt aangemaakt: " + eindpunt.toString());
-		}
+			}
 		LijnStuk lijn;
 		try {
 			lijn = new LijnStuk(punt, eindpunt);
@@ -138,7 +143,6 @@ public class PictionaryUi {
 			JOptionPane.showMessageDialog(f, d.getMessage());
 			return null;
 		}
-		JOptionPane.showMessageDialog(f, "U heeft een correcte lijn aangemaakt: " + lijn.toString());
 		return lijn;
 	}
 
