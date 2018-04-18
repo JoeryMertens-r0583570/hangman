@@ -8,6 +8,7 @@ public class HintLetter {
 	
 	public HintLetter(char letter) {
 		this.letter = letter;
+		if(letter == ' ') isgeraden = true;
 	}
 	
 	public boolean raad(char letter) {
