@@ -47,6 +47,9 @@ public class HangMan {
     }
 
     public void setSpeler(Speler speler) {
+        if (speler == null) {
+            throw new DomainException("Speler is null");
+        }
         this.speler = speler;
     }
 
@@ -55,6 +58,9 @@ public class HangMan {
     }
 
     public void setLijst(WoordenLijst lijst) {
+        if (lijst == null || lijst.getAantalWoorden()==0) {
+            throw new DomainException("Speler is null");
+        }
         this.lijst = lijst;
     }
 
