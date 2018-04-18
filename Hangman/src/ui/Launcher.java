@@ -15,8 +15,7 @@ public class Launcher {
 		
 		WoordenLezer woordenLezer = new WoordenLezer("src/db/hangman.txt");
 		WoordenLijst woordenLijst = woordenLezer.lees();
-		HintWoord hintWoord = new HintWoord(woordenLijst.getRandomWoord());
-		
+
 		JFrame f = new JFrame();
 		String speler = JOptionPane.showInputDialog(f, "Welkom! \nHoe heet je?");
 		Speler player = new Speler(speler);
@@ -29,7 +28,7 @@ public class Launcher {
 			
 		}
 		else if (keuze.equals("HangMan")) {
-			new HangManUI(player, f, hintWoord);
+			new HangManUI(player, woordenLijst);
 		}
 	}
 }

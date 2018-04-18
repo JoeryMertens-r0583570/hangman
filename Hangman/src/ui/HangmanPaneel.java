@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import domain.HangMan;
+import jdk.nashorn.internal.scripts.JO;
 
 public class HangmanPaneel extends JPanel {
 
@@ -54,6 +55,7 @@ public class HangmanPaneel extends JPanel {
 					guess = input.charAt(0);
 				}
 				//TODO raad
+                getSpel().raad(guess);
 
 				woord.setText(getSpel().getHint());
 				letter.setText("");
@@ -63,6 +65,22 @@ public class HangmanPaneel extends JPanel {
 				//toon boodschap als gewonnen of verloren en vraag of speler opnieuw wilt spelen
 				//als de speler opnieuw wilt spelen: herzet het spel en het paneel
 				//anders stop (System.exit(0))
+                int dialog = -1;
+                if (getSpel().isGewonnen()) {
+                    dialog = JOptionPane.showConfirmDialog(null, "Hoera, je hebt het woord geraden! Wil je nog eens spelen?", "Gewonnen!", JOptionPane.YES_NO_OPTION);
+                }
+                else if (getSpel().isGameOver()) {
+                    dialog = JOptionPane.showConfirmDialog(null, "Helaas, je bent verloren! Wil je nog eens spelen?", "Gewonnen!", JOptionPane.YES_NO_OPTION);
+                }
+                if (dialog == JOptionPane.YES_OPTION) {
+                    getSpel().reset();
+                    woord.setText(getSpel().getHint());
+                    letter.setText("");
+                    getTekenVenster().teken();
+                }
+                else if (dialog == JOptionPane.NO_OPTION) {
+                    System.exit(0);
+                }
 			}
 		}
 
