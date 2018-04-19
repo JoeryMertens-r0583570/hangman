@@ -8,6 +8,11 @@ import java.util.Properties;
  */
 public class DbConnectie {
     public static void main(String[] args) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         String url = "jdbc:postgresql://databanken.ucll.be:61718,databanken.ucll.be:61718/projektwerk";
         Properties props = new Properties();
         props.setProperty("user", "local_r0666962");
