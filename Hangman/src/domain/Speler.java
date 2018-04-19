@@ -4,9 +4,13 @@ public class Speler {
 	
 	private String naam;
 	private int score;
+	private int id;
+	private static int counter = 0;
 
 	public Speler(String naam) throws DomainException{
 		this.setNaam(naam);
+		counter++;
+		setId(counter);
 	}
 	
 	public String getNaam() {
@@ -14,7 +18,7 @@ public class Speler {
 	}
 
 	public void setNaam(String naam) throws DomainException {
-		if (naam == null || naam.isEmpty()) {
+		if (naam == null || naam.trim().isEmpty()) {
 			throw new DomainException();
 		}
 		else this.naam = naam;
@@ -46,4 +50,18 @@ public class Speler {
 	public String toString() {
 		return (this.getNaam());
 	}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+	    if (id > counter) {
+            this.id = id;
+        }
+        else {
+	        counter++;
+	        this.id = counter;
+        }
+    }
 }
