@@ -14,9 +14,12 @@ public class GameHoofdScherm extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private TekenVenster tekenvenster;
+	private Tekening tekening;
 
 	public GameHoofdScherm(String titel, Tekening tekening){
+		
 		super(titel);
+		this.tekening=tekening;
 		TekenVenster tekenvenster = new TekenVenster(tekening);
 		setTekenvenster(tekenvenster);
 
@@ -34,6 +37,7 @@ public class GameHoofdScherm extends JFrame{
 	}
 	
 	public void teken(){
+		System.out.println("scherm:"+tekening);
 		getTekenvenster().teken();
 	}
 
@@ -44,4 +48,5 @@ public class GameHoofdScherm extends JFrame{
 	private void setTekenvenster(TekenVenster tekenvenster) {
 		this.tekenvenster = tekenvenster;
 	}
+	
 }
