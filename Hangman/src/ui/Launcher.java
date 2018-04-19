@@ -19,20 +19,20 @@ public class Launcher {
 		JFrame f = new JFrame();
 		String speler= "";
 		Speler player= null;
-		Speler check;
+//		Speler check;
 		while(speler.trim().isEmpty()) {
 			speler = JOptionPane.showInputDialog(f, "Welkom! \nHoe heet je?");
-			check = db.get(speler);
-			if (check != null) {
-			    player = check;
-            }
-            else {
+//			check = db.get(speler);
+//			if (check != null) {
+//			    player = check;
+//            }
+//            else {
                 try {
                     player = new Speler(speler);
                 } catch (DomainException e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());
                 }
-            }
+//            }
 		}
 		JOptionPane.showMessageDialog(f, player.toString()+" heeft als score: "+player.getScore());
 		String[] games = {"Pictionary", "HangMan"};
