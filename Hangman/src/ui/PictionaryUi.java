@@ -64,6 +64,7 @@ public class PictionaryUi {
 				JOptionPane.showMessageDialog(f, "vorm niet binnen grenzen");
 			}
 			showMenu(f);
+			return;
 		}
 		GameHoofdScherm view = new GameHoofdScherm(speler.getNaam(), tekening);
 		view.setVisible(true);
