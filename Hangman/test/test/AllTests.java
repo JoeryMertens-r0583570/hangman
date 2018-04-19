@@ -723,7 +723,18 @@ public void raad_moet_volgende_zichtbaar_zetten_indien_fout_geraden(){
 	assertFalse(hangman.isGameOver());
 	assertFalse(hangman.isGewonnen());
 }
+@Test
+public void raad_moet_volgende_zichtbaar_zetten_indien_fout_geraden2(){
+	hangman = new HangMan(geldigeSpeler, woordenlijstMetEnkelWoordTest);
+	char letter = 'b';
+	assertEquals(14, hangman.getTekening().getAantalOnzichtbaar());
+	
+	hangman.raad(letter);
+	assertEquals(13, hangman.getTekening().getAantalOnzichtbaar());
+	assertFalse(hangman.isGameOver());
+	assertFalse(hangman.isGewonnen());
 
+}
 @Test
 public void raad_mag_volgende_niet_zichtbaar_zetten_indien_juist_geraden(){
 	hangman = new HangMan(geldigeSpeler, woordenlijstMetEnkelWoordTest);
@@ -779,8 +790,8 @@ public void Tekening_moet_exception_gooien_als_naam_null() {
 public void Tekening_moet_exception_gooien_als_naam_leeg() {
     new Tekening("");
 }
-
-@Test
+//TODO
+/*@Test
 public void getAantalVormen_moet_aantal_vormen_teruggeven() {
     Tekening huis = createHuisZonderShouw();
     assertEquals(7, huis.getAantalVormen());
@@ -868,6 +879,7 @@ public Tekening createHuisMetSchouwZonderDeur() {
     huisMetSchouwZonderDeur.voegToe(schouwNietInTekening);
     return huisMetSchouwZonderDeur;
 }
+*/
 //woordenlijst
 @Test
 public void WoordenLijst_moet_een_Woordenlijst_maken_zonder_woorden() {
