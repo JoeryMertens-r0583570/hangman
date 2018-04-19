@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import domain.HangMan;
-import jdk.nashorn.internal.scripts.JO;
 
 public class HangmanPaneel extends JPanel {
 
