@@ -9,6 +9,12 @@ import java.util.Properties;
  */
 public class PgConnectie {
     public static Connection openConnectie() {
+        try {
+            Class.forName("com.sql.jdbc.Driver").newInstance();
+            System.out.println("Good to Go!");
+        } catch (Exception E) {
+            System.out.println("JDBC Driver error");
+        }
         String url = "jdbc:postgresql://databanken.ucll.be:61718,databanken.ucll.be:61718/projektwerk";
         Properties props = new Properties();
 
