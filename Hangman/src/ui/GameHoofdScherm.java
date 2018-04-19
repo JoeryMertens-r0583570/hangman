@@ -28,6 +28,7 @@ public class GameHoofdScherm extends JFrame{
 		this.setLayout(new BorderLayout());
 		this.add(tekeningPaneel, BorderLayout.CENTER);
 		this.pack();
+		this.setResizable(false);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
