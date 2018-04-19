@@ -19,7 +19,7 @@ public class Speler {
 
 	public void setNaam(String naam) throws DomainException {
 		if (naam == null || naam.trim().isEmpty()) {
-			throw new DomainException("Naam mag niet leeeg zijn.");
+			throw new DomainException("Naam mag niet leeg zijn.");
 		}
 		else this.naam = naam;
 		
