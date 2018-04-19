@@ -48,7 +48,7 @@ public class LijnStuk extends Vorm {
 				Math.max(getStartpunt().getX(), getEindpunt().getX())
 						- Math.min(getStartpunt().getX(), getEindpunt().getX()),
 				Math.max(getStartpunt().getY(),
-						getEindpunt().getY() - Math.min(getStartpunt().getY(), getEindpunt().getY())));
+						getEindpunt().getY()) - Math.min(getStartpunt().getY(), getEindpunt().getY()));
 	}
 
 	@Override

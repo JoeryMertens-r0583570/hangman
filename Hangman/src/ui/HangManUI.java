@@ -24,25 +24,9 @@ public class HangManUI {
 	    HangManHoofdScherm view = new HangManHoofdScherm(spel, paneel);
 	    view.setVisible(true);
 	    view.teken();
-
-//		 String guess = JOptionPane.showInputDialog(null, ("Rarara welk woord zoeken we?\n"+hintWoord.toString())+"\nGeef een letter:");
-//		 while (! hintWoord.isGeraden()) {
-//			 if (guess.length() != 1 ) {
-//				 JOptionPane.showMessageDialog(null, "Geef een enkelvoudig character in");
-//				 guess = JOptionPane.showInputDialog(null, ("Rarara welk woord zoeken we?\n"+hintWoord.toString())+"\nGeef een letter:");
-//			 }
-//			 else if (hintWoord.raad(guess.charAt(0))) {
-//				 if ( hintWoord.isGeraden()) break;
-//				  guess = JOptionPane.showInputDialog(null, ("Super doe zo voort!\nRarara welk woord zoeken we?\n"+hintWoord.toString())+"\nGeef een letter:");
-//			 }
-//			 else {
-//				  guess = JOptionPane.showInputDialog(null, ("Helaas, volgende keer beter!\nRarara welk woord zoeken we?\n"+hintWoord.toString())+"\nGeef een letter:");
-//			 }
-//		 }
-//		 if (hintWoord.isGeraden()) {
-//			 JOptionPane.showMessageDialog(null, "Super je hebt het woord geraden!\nHet woord was: "+hintWoord.getWoord());
-//		 }
 	 }
+
+
 
     public Speler getSpeler() {
         return speler;
