@@ -68,15 +68,8 @@ public class SpelerTabel implements SpelerDb {
     @Override
     public void add(Speler s) {
         try {
-            PreparedStatement st = getCon().prepareStatement("SELECT * FROM " + tabel);
-            ResultSet rs = st.executeQuery();
-            List<Speler> list = new ArrayList<>();
-            if (rs.next()) {
-                Speler speler = new Speler(rs.getString("Naam"));
-                speler.setId(rs.getInt("Id"));
-                speler.setScore(rs.getInt("Score"));
-            }
-            rs.close();
+            PreparedStatement st = getCon().prepareStatement("INSERT INTO Score\nVALUES ("+s.getId()+", "+s.getNaam()+", "+s.getScore()+")");
+            st.executeQuery();
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
@@ -86,12 +79,26 @@ public class SpelerTabel implements SpelerDb {
 
     @Override
     public void update(Speler s) {
-
+        try {
+            PreparedStatement st = getCon().prepareStatement("UPDATE Score\nSET Score = "+s.getScore()+"\nWHERE Id = "+s.getId());
+            st.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+            System.exit(0);
+        }
     }
 
     @Override
     public void delete(int id) {
-
+        try {
+            PreparedStatement st = getCon().prepareStatement("DELETE Score\nWHERE Id = "+id);
+            st.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+            System.exit(0);
+        }
     }
 
     public Connection getCon() {
