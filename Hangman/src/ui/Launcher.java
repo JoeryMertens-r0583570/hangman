@@ -12,7 +12,7 @@ public class Launcher {
 
 	
 	public static void main(String[] args) throws DomainException, IOException, DbException {
-		SpelerTabel db = new SpelerTabel();
+		//SpelerTabel db = new SpelerTabel();
 		WoordenLezer woordenLezer = new WoordenLezer("src/db/hangman.txt");
 		WoordenLijst woordenLijst = woordenLezer.lees();
 

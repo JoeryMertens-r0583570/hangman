@@ -64,7 +64,8 @@ public class MenuPaneel extends JPanel {
 
 		};
 
-		add.addActionListener(resetEvent);
+		reset.addActionListener(resetEvent);
+		
 
 	}
 }
