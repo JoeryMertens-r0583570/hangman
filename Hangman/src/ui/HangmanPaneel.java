@@ -53,9 +53,22 @@ public class HangmanPaneel extends JPanel {
 			if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 				String input = letter.getText();
 				char guess = '\u0000';
+				char[] alphabet= new char[] {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 				if (input.length() == 1) {
-					guess = input.charAt(0);
-					message.setText("U heeft de letter "+guess+" gegokt");
+					guess = input.toLowerCase().charAt(0);
+					boolean correct=false;
+					for(char c:alphabet) {
+						if(guess==c) {
+							message.setText("U heeft de letter "+guess+" gegokt");
+							correct=true;
+							break;
+							}
+					}
+					if(!correct) {
+						message.setText("Gelieve een letter uit het Nederlandse alphabet te gebruiken");
+						return;
+					}
+					
 				} else {
 					message.setText("Gelieve exact één letter in te geven");
 					letter.setText("");
@@ -74,7 +87,7 @@ public class HangmanPaneel extends JPanel {
 								JOptionPane.YES_NO_OPTION);
 					} else if (getSpel().isGameOver()) {
 						dialog = JOptionPane.showConfirmDialog(null,
-								"Helaas, je bent verloren! Wil je nog eens spelen?", "Gewonnen!",
+								"Helaas, je bent verloren! Wil je nog eens spelen?", "Verloren :(",
 								JOptionPane.YES_NO_OPTION);
 					}
 					else break;
