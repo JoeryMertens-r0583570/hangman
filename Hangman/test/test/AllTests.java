@@ -99,6 +99,15 @@ public class AllTests {
 		woordenlijstMetGeldigeWoorden.voegToe(geldigeWoorden.get(0));
 		woordenlijstMetGeldigeWoorden.voegToe(geldigeWoorden.get(1));
 		woordenlijstMetGeldigeWoorden.voegToe(geldigeWoorden.get(2));
+		geldigeSpeler = new Speler("naam");
+
+		geldigeWoordenlijst = new WoordenLijst();
+		geldigeWoordenlijst.voegToe("test");
+		
+		hangman = new HangMan(geldigeSpeler, geldigeWoordenlijst);
+		
+		woordenlijstMetEnkelWoordTest = new WoordenLijst();
+		woordenlijstMetEnkelWoordTest.voegToe("test");
 	}
 	
 	//CirkelTest
