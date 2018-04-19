@@ -3,7 +3,12 @@ package test;
 import domain.*;
 import org.junit.*;
 
+import db.DbException;
+import db.WoordenLijst;
+
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 
 public class AllTests {
 	
@@ -37,9 +42,25 @@ public class AllTests {
 	private Punt punt;
 	
 	private Rechthoek rechthoek;
+	private HangMan hangman;
+	private Speler geldigeSpeler;
+	private WoordenLijst geldigeWoordenlijst;
+	private WoordenLijst woordenlijstMetEnkelWoordTest;
+	private Vorm gebouw;
+	private Vorm dak;
+	private Vorm deur;
+	private Vorm raam;
+	private Vorm deurknop;
+	private Vorm raambalk1;
+	private Vorm raambalk2;
+	private Vorm schouwNietInTekening;
+	private WoordenLijst woordenlijstLeeg;
+	private WoordenLijst woordenlijstMetEenGeldigWoord;
+	private WoordenLijst woordenlijstMetGeldigeWoorden;
+	private ArrayList<String> geldigeWoorden;
 	
 	@Before
-	public void setUp() {
+	public void setUp() throws DbException {
 		naam = "Lars";
 		anderenaam = "Lies";
 		positiveScore = 5;
@@ -56,6 +77,28 @@ public class AllTests {
 		punt = new Punt(xCoordinaat, yCoordinaat);
 		
 		rechthoek = new Rechthoek(linkerBovenhoek,breedte, hoogte);
+		gebouw = new Rechthoek(new Punt(100, 200), 200, 180);
+	    dak = new Driehoek(new Punt(100, 200), new Punt(300, 200), new Punt(200, 100));
+	    deur = new Rechthoek(new Punt(130, 280), 50,100);
+	    raam = new Rechthoek(new Punt(210, 220), 80, 60);
+	    deurknop = new Cirkel(new Punt(170, 320), 2);
+	    raambalk1 = new LijnStuk(new Punt(210, 250), new Punt(290, 250));
+	    raambalk2 = new LijnStuk(new Punt(250, 220), new Punt(250, 280));
+	    schouwNietInTekening = new Rechthoek(new Punt(150, 150), 20,40);
+	    geldigeWoorden = new ArrayList<String>();
+		geldigeWoorden.add("test");
+		geldigeWoorden.add("game");
+		geldigeWoorden.add("hangman");
+		
+		woordenlijstLeeg = new WoordenLijst();
+		
+		woordenlijstMetEenGeldigWoord = new WoordenLijst();
+		woordenlijstMetEenGeldigWoord.voegToe(geldigeWoorden.get(0));
+		
+		woordenlijstMetGeldigeWoorden = new WoordenLijst();
+		woordenlijstMetGeldigeWoorden.voegToe(geldigeWoorden.get(0));
+		woordenlijstMetGeldigeWoorden.voegToe(geldigeWoorden.get(1));
+		woordenlijstMetGeldigeWoorden.voegToe(geldigeWoorden.get(2));
 	}
 	
 	//CirkelTest
@@ -159,6 +202,7 @@ public class AllTests {
 		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
 		assertFalse(drieHoek.equals(null));
 	}
+	//Lijnstuktest
 	
 	@Test
     public void LijnStuk_moet_lijnstuk_aanmaken_met_gegeven_startPunt_en_eindPunt() {
@@ -628,4 +672,228 @@ public class AllTests {
         TekeningHangman hangman = new TekeningHangman();
         hangman.verwijder(hangman.getVorm(5));
     }
+
+//Hangman
+
+@Test
+public void HangMan_moet_een_HangMan_spel_maken_en_initialiseren_voor_de_gegeven_speler_met_de_gegeven_woordenlijst() {
+	hangman = new HangMan(geldigeSpeler, woordenlijstMetEnkelWoordTest);
+	assertEquals(geldigeSpeler, hangman.getSpeler());
+	assertFalse(hangman.isGameOver());
+	assertFalse(hangman.isGewonnen());
+	assertEquals("_ _ _ _", hangman.getHint());
 }
+
+@Test (expected = DomainException.class)
+public void HangMan_moet_een_exception_gooien_als_gegeven_speler_null() {
+	hangman = new HangMan(null, geldigeWoordenlijst);
+}
+
+@Test (expected = DomainException.class)
+public void HangMan_moet_een_exception_gooien_als_gegeven_woordenlijst_null() {
+	hangman = new HangMan(geldigeSpeler, null);
+}
+
+@Test (expected = DomainException.class)
+public void HangMan_moet_een_exception_gooien_als_gegeven_woordenlijst_leeg() {
+	WoordenLijst legeWoordenlijst = new WoordenLijst();
+	assertEquals(0, legeWoordenlijst.getAantalWoorden());
+	hangman = new HangMan(geldigeSpeler, legeWoordenlijst);
+}
+
+// De testen voor wat er gebeurt als je een foutieve letter (null, leeg, meer dan 1 karakter) 
+// meegeeft, worden hier niet herhaald, die zitten al in de HintWoordTest	
+@Test
+public void raad_moet_volgende_zichtbaar_zetten_indien_fout_geraden(){
+	hangman = new HangMan(geldigeSpeler, woordenlijstMetEnkelWoordTest);
+	char letter = 'a';
+	assertEquals(14, hangman.getTekening().getAantalOnzichtbaar());
+	
+	hangman.raad(letter);
+	assertEquals(13, hangman.getTekening().getAantalOnzichtbaar());
+	assertFalse(hangman.isGameOver());
+	assertFalse(hangman.isGewonnen());
+}
+
+@Test
+public void raad_mag_volgende_niet_zichtbaar_zetten_indien_juist_geraden(){
+	hangman = new HangMan(geldigeSpeler, woordenlijstMetEnkelWoordTest);
+	char letter = 'e';
+	assertEquals(14, hangman.getTekening().getAantalOnzichtbaar());
+	
+	hangman.raad(letter);
+	assertEquals(14, hangman.getTekening().getAantalOnzichtbaar());
+	assertFalse(hangman.isGameOver());
+	assertFalse(hangman.isGewonnen());
+}
+
+@Test
+public void raad_mag_volgende_niet_zichtbaar_zetten_en_gewonnen_op_true_als_laatste_letter_juist_geraden(){
+	HangMan hangmanOp1NaGeraden = new HangMan(geldigeSpeler, woordenlijstMetEnkelWoordTest);
+	hangmanOp1NaGeraden.raad('t');
+	hangmanOp1NaGeraden.raad('e');
+	
+	hangmanOp1NaGeraden.raad('s');
+
+	assertEquals(14, hangmanOp1NaGeraden.getTekening().getAantalOnzichtbaar());
+	assertFalse(hangmanOp1NaGeraden.isGameOver());
+	assertTrue(hangmanOp1NaGeraden.isGewonnen());
+}
+
+@Test
+public void raad_moet_volledige_afbeelding_zichtbaar_zetten_en_gameover_op_true_als_laatste_kans_fout_geraden(){
+	HangMan hangmanNietGeradenEn13FouteAntwoorden = new HangMan(geldigeSpeler, woordenlijstMetEnkelWoordTest);
+	for(int i = 0; i < 13; i++){
+		hangmanNietGeradenEn13FouteAntwoorden.raad('a');
+	}
+
+	hangmanNietGeradenEn13FouteAntwoorden.raad('o');
+	
+	assertEquals(0, hangmanNietGeradenEn13FouteAntwoorden.getTekening().getAantalOnzichtbaar());
+	assertTrue(hangmanNietGeradenEn13FouteAntwoorden.isGameOver());
+	assertFalse(hangmanNietGeradenEn13FouteAntwoorden.isGewonnen());
+}
+
+@Test
+public void Tekening_moet_een_tekening_aanmaken_met_een_geldige_naam_en_0_vormen() {
+    Tekening huis = new Tekening("huis");
+    assertEquals("huis", huis.getNaam());
+    assertEquals(0, huis.getAantalVormen());
+}
+
+@Test (expected = IllegalArgumentException.class)
+public void Tekening_moet_exception_gooien_als_naam_null() {
+    new Tekening(null);
+}
+
+@Test (expected = IllegalArgumentException.class)
+public void Tekening_moet_exception_gooien_als_naam_leeg() {
+    new Tekening("");
+}
+
+@Test
+public void getAantalVormen_moet_aantal_vormen_teruggeven() {
+    Tekening huis = createHuisZonderShouw();
+    assertEquals(7, huis.getAantalVormen());
+}
+
+@Test
+public void bevat_geeft_true_als_gegeven_vorm_deel_uitmaakt_van_de_tekening(){
+    Tekening huis = createHuisZonderShouw();
+    assertTrue(huis.bevat(deur));
+}
+
+@Test
+public void bevat_geeft_false__als_gegeven_vorm_geen_deel_uitmaakt_van_de_tekening(){
+    Tekening huis = createHuisZonderShouw();
+    assertFalse(huis.bevat(schouwNietInTekening));
+}
+
+
+
+@Test
+public void equals_moet_false_teruggeven_als_parameter_tekening_is_met_verschillend_aantal_vormen(){
+    Tekening huis = createHuisZonderShouw();
+    Tekening huisMetSchouw = createHuisMetSchouw();
+    assertFalse(huis.equals(huisMetSchouw));
+}
+
+@Test
+public void equals_moet_false_teruggeven_als_parameter_tekening_is_met_zelfde_aantal_vormen_ander_vorm(){
+    Tekening huis = createHuisZonderShouw();
+    Tekening huisMetSchouwZonderDeur = createHuisMetSchouwZonderDeur();
+    assertFalse(huis.equals(huisMetSchouwZonderDeur));
+}
+
+@Test
+public void equals_moet_true_teruggeven_als_parameter_tekening_is_met_zelfde_aantal_vormen_andere_volgorde(){
+    Tekening huis = createHuisZonderShouw();
+    Tekening huisMetSchouwZonderDeur = createHuisMetSchouwZonderDeur();
+    huisMetSchouwZonderDeur.verwijder(schouwNietInTekening);
+    huisMetSchouwZonderDeur.voegToe(deur);
+    assertTrue(huis.equals(huisMetSchouwZonderDeur));
+}
+
+@Test
+public void equals_moet_true_teruggeven_alsparameter_tekening_is_met_zelfde_aantal_vormen_zelfde_volgorde(){
+    Tekening huis = createHuisZonderShouw();
+    Tekening huisMetSchouw = createHuisMetSchouw();
+    huisMetSchouw.verwijder(schouwNietInTekening);
+    assertTrue(huis.equals(huisMetSchouw));
+}
+
+
+public Tekening createHuisMetSchouw() {
+    Tekening huisMetSchouw = new Tekening("huisMetSchouw");
+    huisMetSchouw.voegToe(gebouw);
+    huisMetSchouw.voegToe(dak);
+    huisMetSchouw.voegToe(deur);
+    huisMetSchouw.voegToe(raam);
+    huisMetSchouw.voegToe(deurknop);
+    huisMetSchouw.voegToe(raambalk1);
+    huisMetSchouw.voegToe(raambalk2);
+    huisMetSchouw.voegToe(schouwNietInTekening);
+    return huisMetSchouw;
+}
+
+public Tekening createHuisZonderShouw() {
+    Tekening huis = new Tekening("huis");
+    huis.voegToe(gebouw);
+    huis.voegToe(dak);
+    huis.voegToe(deur);
+    huis.voegToe(raam);
+    huis.voegToe(deurknop);
+    huis.voegToe(raambalk1);
+    huis.voegToe(raambalk2);
+    return huis;
+}
+
+public Tekening createHuisMetSchouwZonderDeur() {
+    Tekening huisMetSchouwZonderDeur = new Tekening("huisMetSchouwZonderDeur");
+    huisMetSchouwZonderDeur.voegToe(gebouw);
+    huisMetSchouwZonderDeur.voegToe(dak);
+    huisMetSchouwZonderDeur.voegToe(raam);
+    huisMetSchouwZonderDeur.voegToe(deurknop);
+    huisMetSchouwZonderDeur.voegToe(raambalk1);
+    huisMetSchouwZonderDeur.voegToe(raambalk2);
+    huisMetSchouwZonderDeur.voegToe(schouwNietInTekening);
+    return huisMetSchouwZonderDeur;
+}
+//woordenlijst
+@Test
+public void WoordenLijst_moet_een_Woordenlijst_maken_zonder_woorden() {
+	WoordenLijst woordenlijstLeeg = new WoordenLijst();
+	assertEquals(0,woordenlijstLeeg.getAantalWoorden());
+}
+
+@Test
+public void voegToe_moet_een_woord_toevoegen() throws DbException {
+	woordenlijstLeeg.voegToe(geldigeWoorden.get(0));
+	
+	assertEquals(1,woordenlijstLeeg.getAantalWoorden());
+}
+
+@Test (expected = DbException.class)
+public void voegToe_moet_exception_gooien_als_gegeven_woord_null() throws DbException {
+	woordenlijstLeeg.voegToe(null);
+}
+
+@Test (expected = DbException.class)
+public void voegToe_moet_exception_gooien_als_gegeven_woord_leeg() throws DbException {
+	woordenlijstLeeg.voegToe("");
+}
+
+@Test (expected = DbException.class)
+public void voegToe_moet_exception_gooien_als_gegeven_woord_reeds_in_lijst() throws DbException {
+	String woordAlInLijst = geldigeWoorden.get(2);
+
+	woordenlijstMetGeldigeWoorden.voegToe(woordAlInLijst);
+}
+
+}
+
+
+
+
+
+
