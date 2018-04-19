@@ -17,8 +17,13 @@ public class Launcher {
 		WoordenLijst woordenLijst = woordenLezer.lees();
 
 		JFrame f = new JFrame();
-		String speler = JOptionPane.showInputDialog(f, "Welkom! \nHoe heet je?");
-		Speler player = new Speler(speler);
+		String speler= "";
+		Speler player= null;
+		while(speler.trim().isEmpty()) {
+			speler = JOptionPane.showInputDialog(f, "Welkom! \nHoe heet je?");
+			try{player = new Speler(speler);}
+			catch (DomainException e){JOptionPane.showMessageDialog(null, e.getMessage());}
+		}
 		JOptionPane.showMessageDialog(f, player.toString()+" heeft als score: "+player.getScore());
 		String[] games = {"Pictonary", "HangMan"};
 		String keuze = (String) JOptionPane.showInputDialog(null, "Wat wilt u spelen", "input", JOptionPane.INFORMATION_MESSAGE,
