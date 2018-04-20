@@ -14,7 +14,6 @@ public class PictionaryUi {
 	public PictionaryUi(Speler speler, JFrame f) throws DomainException {
 		this.speler = speler;
 		this.tekening = new Tekening(speler.getNaam());
-		System.out.println(tekening);
 		this.f=f;
 		view = new PictionaryHoofdScherm(speler.getNaam(), this, tekening);
 		view.setVisible(true);
@@ -81,7 +80,6 @@ public class PictionaryUi {
 		} catch (DomainException e) {
 			JOptionPane.showMessageDialog(f, "vorm niet binnen grenzen");
 		}
-		System.out.println("ui"+tekening.getLijst().size());
 		view.teken();
 		
 	}
@@ -262,7 +260,6 @@ public class PictionaryUi {
 	public void clear() {
 		this.tekening.getLijst().clear();
 		view.teken();
-		System.out.println(1);
 	}
 
 }

@@ -37,7 +37,6 @@ public class GameHoofdScherm extends JFrame{
 	}
 	
 	public void teken(){
-		System.out.println("scherm:"+tekening);
 		getTekenvenster().teken();
 	}
 

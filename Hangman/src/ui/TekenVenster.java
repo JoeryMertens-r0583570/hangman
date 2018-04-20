@@ -25,8 +25,6 @@ public class TekenVenster extends Canvas {
 	}
 
 	public void teken() {
-		
-		System.out.println(tekening);
 		repaint();
 	}
 
