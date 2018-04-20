@@ -26,15 +26,17 @@ public class PictionaryUi {
 		JOptionPane.showMessageDialog(f, "Het scherm gaat tussen (" + tekening.getMinX() + "," + tekening.getMinY()
 				+ ") en (" + tekening.getMaxX() + "," + tekening.getMaxY() + ")");
 		String[] shapes = { "Driehoek", "Cirkel", "Rechthoek", "Lijnstuk" };
-		String keuze = (String) JOptionPane.showInputDialog(null, "Wat wilt u tekenen", "input",
+		String keuze =(String)JOptionPane.showInputDialog(null, "Wat wilt u tekenen", "input",
 				JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
+		if(keuze==null) {
+			return;
+		}
 		Integer x = null;
 		String result = null;
 		while (x == null) {
 			try {
 				result = JOptionPane.showInputDialog(f, "X coordinaat:");
 				if (result == null) {
-					showMenu();
 					return;
 				}
 				x = Integer.parseInt(result);
@@ -47,7 +49,6 @@ public class PictionaryUi {
 			try {
 				result = JOptionPane.showInputDialog(f, "Y coordinaat:");
 				if (result == null) {
-					showMenu();
 					return;
 				}
 				y = Integer.parseInt(result);
@@ -91,7 +92,6 @@ public class PictionaryUi {
 			try {
 				result = JOptionPane.showInputDialog(f, "X coordinaat 2de punt:");
 				if (result == null) {
-					showMenu();
 					return null;
 				}
 				tweedePuntX = Integer.parseInt(result);
@@ -104,7 +104,6 @@ public class PictionaryUi {
 			try {
 				result = JOptionPane.showInputDialog(f, "Y coordinaat 2de punt:");
 				if (result == null) {
-					showMenu();
 					return null;
 				}
 				tweedePuntY = Integer.parseInt(result);
@@ -118,7 +117,6 @@ public class PictionaryUi {
 			try {
 				result = JOptionPane.showInputDialog(f, "X coordinaat 3de punt:");
 				if (result == null) {
-					showMenu();
 					return null;
 				}
 				derdePuntX = Integer.parseInt(result);
@@ -131,7 +129,6 @@ public class PictionaryUi {
 			try {
 				result = JOptionPane.showInputDialog(f, "Y coordinaat 3de punt:");
 				if (result == null) {
-					showMenu();
 					return null;
 				}
 				derdePuntY = Integer.parseInt(result);
@@ -157,7 +154,6 @@ public class PictionaryUi {
 			try {
 				result = JOptionPane.showInputDialog(f, "Radius van de cirkel:");
 				if (result == null) {
-					showMenu();
 					return null;
 				}
 				radius = Integer.parseInt(result);
@@ -185,7 +181,6 @@ public class PictionaryUi {
 			try {
 				result = JOptionPane.showInputDialog(f, "Breedte van de rechthoek:");
 				if (result == null) {
-					showMenu();
 					return null;
 				}
 				breedte = Integer.parseInt(result);
@@ -197,7 +192,6 @@ public class PictionaryUi {
 			try {
 				result = JOptionPane.showInputDialog(f, "Hoogte van de rechthoek:");
 				if (result == null) {
-					showMenu();
 					return null;
 				}
 				hoogte = Integer.parseInt(result);
@@ -218,7 +212,6 @@ public class PictionaryUi {
 			try {
 				result = JOptionPane.showInputDialog(f, "x-coordinaat van eindpunt:");
 				if (result == null) {
-					showMenu();
 					return null;
 				}
 				x = Integer.parseInt(result);
@@ -231,7 +224,6 @@ public class PictionaryUi {
 			try {
 				result = JOptionPane.showInputDialog(f, "y-coordinaat van eindpunt:");
 				if (result == null) {
-					showMenu();
 					return null;
 				}
 				y = Integer.parseInt(result);
